@@ -23,6 +23,7 @@ int drawColorAlpha = 255;
 
 char windowName[] = "SDL Game";
 bool gameShouldQuit = false;
+bool colorChanges = false;
 
 
 int main(int argc, char* argv[])
@@ -70,10 +71,23 @@ void gameInputHandler()
 				gameShouldQuit = !gameShouldQuit;
 				break;
 			case SDL_MOUSEMOTION:
-				printf("[Mouse]\tx:%d\ty:%d\n", event.motion.x, event.motion.y);
-				drawColorRed = (Uint8) (event.motion.y / (HEIGHT / 255.0));
-				drawColorBlue = (Uint8) (event.motion.x / (WIDTH / 255.0));
+				if (colorChanges)
+				{
+					int mouseX = event.motion.x;
+					int mouseY = event.motion.y;
+					printf("[Mouse]\tx:%d\ty:%d\n", mouseX, mouseY);
+					drawColorRed = (Uint8)(mouseY / ((HEIGHT / 2.0) / 255.0));
+					drawColorGreen = (Uint8)((255 - (mouseY / ((HEIGHT / 2.0) / 255.0)) + 255 - (mouseY / ((WIDTH / 2.0) / 255.0))) / 2);
+					drawColorBlue = (Uint8)(mouseY / ((WIDTH / 2.0) / 255.0));
+				}
 				break;
+			case SDL_MOUSEBUTTONDOWN:
+				switch (event.button.button)
+				{
+					case SDL_BUTTON_LEFT:
+						colorChanges = !colorChanges;
+						break;
+				}
 		}
 	}
 }
