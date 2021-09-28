@@ -1,5 +1,11 @@
 # Simple_SDL_Window
 
-## WARNING: If you have Photosensitivity and Seizures DO NOT run this software!
+## WARNING: This software may cause Photosensitivity and Seizures!
 
-To start color changing left click on the screen.
+### Use W, A, S and D to move the pink square
+
+### Green square increases your size
+
+### Red square reduces your size
+
+### Left Click teleport de pink square to your mouse position
